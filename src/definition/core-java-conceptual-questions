@@ -4,7 +4,10 @@ What is programing language?
 A. Special language that contains set of instructions that can be used to manipulate data in the computer.
 
 What jdk contains or composed of and define each components?
-A.
+A. JDK is used for developing Java applications and applets.It includes:
+an interpreter/loader (java), a compiler (javac) is used to compile Java source code files into
+executable Java bytecode classes, debugger is used to debug a code. Disassembler to disassembles class files.
+An archiver (jar), a documentation generator (javadoc) and other tools needed in Java development.
 
 What is IDE?
 A. IDE means integrated development environment. We use diffent IDE's to write programming languages.
@@ -133,73 +136,82 @@ What is the difference between String, StringBuffer and StringBuilder?
 A.
 
 What is Singleton class?
-A.
+A. In object-oriented programming, its a class that can have only one object at a time.
 
 What is Serialization and Deserialization?
-A.
+A.Serialization is a process of converting an object into a sequence of bytes. Deserialization is just the
+reverse process of creating object from sequence of bytes.
 
 when to use transient variable in java?
-A.
+A. If we dont want to serialize a variable, we use transient variable.
 
 Difference between while and do..while loop?
-A.
+A. While loop checks the condition first, if condition matches then perform the task
+   Do while loop will perform the task first then match the condition
 
 What is Enum?
-A.
+A. A java enum is a special java type used to define collections of constants
 
 What is Iterator?
-A.
+A. An iterator is an Interface which is used to travese through a collection one by one.
 
 Which one will take more memory, an int or Integer?
-A.
+A. Integer will take more memory.
 
 Why is String Immutable in Java?
-A.
+A.String is immutable for several reasons, one of the reason is its security purpose.
+Security parameters are typically represented as String in network connections, database connection urls,
+usernames/passwords etc. If it were mutable, these parameters could be easily changed.
 
 What is constructor chaining in Java?
-A.
+A. We use the term constructor chaining when we call one constructor from another constructor.
 
 The difference between Serial and Parallel Garbage Collector?
-A.
+A. The serial collector uses a single thread to perform all garbage collection work and Parallel garbage collector uses
+multithreaded environment.
 
 What is JIT stands for?
-A.
+A. Just in time compiler.
 
 Explain Java Heap space and Garbage collection?
-A.
+A. The heap is the area in memory where objects are stored. Garbage collection clears the heap of unused objects.
 
 Can you guarantee the garbage collection process?
-A.
+A. No.
 
 What is the difference between stack and heap in Java?
-A.
+A.Whenever an object is created, it’s always stored in the Heap space and stack memory contains the reference to it.
+Stack memory only contains local primitive variables and reference variables to objects in heap space.
 
 What is reflection in java and why is it useful?
-A.
+A. Its an API that can be used to examine and modify the behavior of objects, methods, class,
+and interface during runtime.
 
 what is multithreading in java?
-A.
-
+A.Threads are light-weight processes within a process.
+Multithreading allows two or more parts of a program to run at the same time for maximum utilization of CPU.
 What is the use of synchronization in Java?
-A.
+A.Synchronization is used when multiple threads are running at the same time, but only one thread is given access to
+CPU at a time.
 
 What is Framework?
-A.
+A. Framework is a large body of pre-written code that can be used to add your code to solve problems in specific domain.
 
 What are the testing Framework available in java?
-A.
+A. TestNG, Junit.
 
 Difference between jUnit and testNG?
-A.
+A. TestNG has all the features of Junit plus some added features including
+ dependency testing, group testing, suit testing.
 
 What are the dependencies for this project?
-A.
+A. jar files in the lib folder of this projects are the dependencies for this project.
 
 what is dependency injection in java?
-A.
+A. An injection is the passing of a dependency to a dependent object to a class that would use it.
 
 What is static binding and dynamic binding?
-A.
+A.The early binding (static binding) refers to compile time binding and late binding (dynamic binding) refers to runtime binding.
 
 
 
