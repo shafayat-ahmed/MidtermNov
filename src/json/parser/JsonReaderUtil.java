@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mongodb.util.JSON;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,6 +46,9 @@ public class JsonReaderUtil {
         JsonArray  jsonArray = null;
         JsonParser jp = new JsonParser();
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+
+
+
         if (root instanceof JsonObject) {
             JsonObject rootObj = root.getAsJsonObject();
         } else if (root instanceof JsonArray) {
@@ -52,19 +56,27 @@ public class JsonReaderUtil {
         }
         for (int i = 0; i < jsonArray.size()-1; i++) {
             try {
+
+
                 JsonObject jsonobject = jsonArray.get(i).getAsJsonObject();
                 //you code start here
 
+                String emailS = jsonobject.get("empEmail").toString();
+                String nameS = jsonobject.get("empName").toString();
+                String deptS = jsonobject.get("salary").toString();
+                String salaryS = jsonobject.get("department").toString();
 
+                emp = new Employee(emailS,nameS,deptS,salaryS);
 
-
-
+                empList.add(emp);
 
 
             }catch(Exception ex){
 
             }
         }
+
+
         //Print to the console.
         for(Employee entry:empList){
             System.out.println(entry.getEmpEmail()+" "+entry.getEmpName()+" "+entry.getSalary()+" "+entry.getDepartment());
