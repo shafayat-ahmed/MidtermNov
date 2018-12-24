@@ -11,7 +11,7 @@ public class UnitTestingStringProblem {
         Assert.assertEquals(true,Palindrome.isPal("MOM"));
         //Largest word
         String s="Human brain is a biological learning machine";
-        Assert.assertEquals("8 elephant",DetermineLargestWord.findTheLargestWord(s));
+        Assert.assertEquals("biological",DetermineLargestWord.findTheLargestWord(s));
         //Duplicate word
         String st = "Java is a programming Language. Java is also an Island of Indonesia. Java is widely used language";
         Assert.assertEquals("1, widely: 1, is: 3, also: 1, " +

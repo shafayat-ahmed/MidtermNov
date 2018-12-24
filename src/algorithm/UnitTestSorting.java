@@ -59,5 +59,30 @@ public class UnitTestSorting {
         }catch(Exception ex){
             ex.getMessage();
         }
+        //Merge sort
+        unSortedArray = new int[]{6,9,2,5,1,0,4};
+        sort.mergeSort(unSortedArray,0,unSortedArray.length-1);
+        try {
+            Assert.assertEquals(sortedArray, unSortedArray, "Array is not Sorted");
+        }catch(Exception ex){
+            ex.getMessage();
+        }
+        //
+        //Quick sort
+        unSortedArray = new int[]{6,9,2,5,1,0,4};
+        sort.quickSort(unSortedArray,0,unSortedArray.length-1);
+        try {
+            Assert.assertEquals(sortedArray, unSortedArray, "Array is not Sorted");
+        }catch(Exception ex){
+            ex.getMessage();
+        }
+        //Bucket sort
+        unSortedArray = new int[]{6,9,2,5,1,0,4};
+        sort.bucketSort(unSortedArray,9);
+        try {
+            Assert.assertEquals(sortedArray, unSortedArray, "Array is not Sorted");
+        }catch(Exception ex){
+            ex.getMessage();
+        }
     }
 }
