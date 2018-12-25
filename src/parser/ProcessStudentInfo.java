@@ -86,6 +86,7 @@ public class ProcessStudentInfo {
 		//connectToSqlDB.insertDataFromArrayListToMySql(seleniumStudents, "qtp","studentList");
 
 		//Store Selenium data into Selenium table in Database
+		connectToMongoDB.insertIntoMongoDB(seleniumStudents, "selenium");
 
 		//Retrieve Qtp students from Database
 		List<Student> stList = connectToMongoDB.readStudentListFromMongoDB("qtp");
@@ -94,6 +95,10 @@ public class ProcessStudentInfo {
 		}
 
 		//Retrieve Selenium students from Database
+		List<Student> stList1 = connectToMongoDB.readStudentListFromMongoDB("selenium");
+		for (Student st : stList1) {
+			System.out.println(st.getFirstName() + " " + st.getLastName() + " " + st.getScore() + " " + st.getId());
+		}
 
 
 	}

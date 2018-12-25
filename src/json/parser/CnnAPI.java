@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mongodb.util.JSON;
+import databases.ConnectToSqlDB;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,7 +77,6 @@ public class CnnAPI {
                 JsonObject jsonobject = jsonArray.get(0).getAsJsonArray().get(i).getAsJsonObject();
 
 
-
                 String source = jsonobject.get("source").getAsJsonObject().get("id").toString();
 
                 String author = jsonobject.get("author").toString();
@@ -88,18 +88,15 @@ public class CnnAPI {
                 String content = jsonobject.get("content").toString();
 
 
-
-                newS = new News(source, author, title, description, u , urlToImage, publisherAt, content);
+                newS = new News(source, author, title, description, u, urlToImage, publisherAt, content);
 
 
                 newsList.add(newS);
 
 
             } catch (Exception ex) {
-
             }
         }
-
         System.out.println(newsList);
 
         //Print to the console.
