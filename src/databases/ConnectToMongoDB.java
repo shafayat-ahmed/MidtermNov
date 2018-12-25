@@ -5,6 +5,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import json.parser.News;
 import org.bson.Document;
 import parser.Student;
 
@@ -75,7 +76,7 @@ public class ConnectToMongoDB {
         return list;
     }
 
-    public List<Student> readStudentListFromMongoDB(String profileName){
+    public List<Student> readStudentListFromMongoDB(List<Student> newsList, String profileName){
         List<Student> list = new ArrayList<Student>();
         Student student = new Student();
         MongoDatabase mongoDatabase = connectToMongoDB();
@@ -93,6 +94,56 @@ public class ConnectToMongoDB {
             student.setId(id);
             student = new Student(student.getFirstName(),student.getLastName(),student.getScore(),student.getId());
             list.add(student);
+        }
+        return list;
+    }
+
+    public String insertNewsIntoMongoDB(List<News> news,String profileName){
+        MongoDatabase mongoDatabase = connectToMongoDB();
+        MongoCollection myCollection = mongoDatabase.getCollection(profileName);
+        boolean collectionExists = mongoDatabase.listCollectionNames()
+                .into(new ArrayList<String>()).contains(profileName);
+        if(collectionExists) {
+            myCollection.drop();
+        }
+        for(int i=0; i<news.size(); i++){
+            MongoCollection<Document> collection = mongoDatabase.getCollection(profileName);
+            Document document = new Document().append("source", news.get(i).getSource()).append("author",
+                    news.get(i).getAuthor()).append("title",news.get(i).getTitle()).append("description", news.get(i).getDescription()).append("url", news.get(i).getUrl()).append("urlToImage", news.get(i).getUrlToImage()).append("publishedAt", news.get(i).getPublisherAt()).append("content", news.get(i).getContent());
+            collection.insertOne(document);
+        }
+        return  "CNN NEWS";
+    }
+
+
+    public List<News> readNewsListFromMongoDB(List<News> newsList, String profileName){
+        List<News> list = new ArrayList<News>();
+        News news = new News();
+        MongoDatabase mongoDatabase = connectToMongoDB();
+        MongoCollection<Document> collection = mongoDatabase.getCollection(profileName);
+        BasicDBObject basicDBObject = new BasicDBObject();
+        FindIterable<Document> iterable = collection.find(basicDBObject);
+        for(Document doc:iterable){
+            String source = (String)doc.get("source");
+            news.setSource(source);
+            String author = (String)doc.get("author");
+            news.setAuthor(author);
+            String title = (String)doc.get("title");
+            news.setTitle(title);
+            String description = (String) doc.get("description");
+            news.setDescription(description);
+
+            String url = (String) doc.get("url");
+            news.setUrl(url);
+
+            String urlToImage = (String) doc.get("urlToImage");
+            news.setUrlToImage(urlToImage);
+
+            String publisherAt = (String) doc.get("publisherAt");
+            news.setPublisherAt(publisherAt);
+
+            news = new News(news.getSource(),news.getAuthor(),news.getTitle(),news.getDescription(), news.getUrl(), news.getUrlToImage(), news.getPublisherAt(), news.getContent());
+            list.add(news);
         }
         return list;
     }

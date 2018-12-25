@@ -1,4 +1,5 @@
 package json.parser;
+import databases.ConnectToMongoDB;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -66,6 +67,8 @@ public class CnnAPI {
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
         JsonObject xd = new JsonObject();
         xd.add("articles", root);
+        //Create ConnectToSqlDB Object
+        ConnectToMongoDB connectToMongoDB = new ConnectToMongoDB();
 
         jsonArray = new JsonArray();
         jsonArray.add(root.getAsJsonObject().get("articles"));
@@ -103,5 +106,14 @@ public class CnnAPI {
         for (News entry : newsList) {
             System.out.println(entry.getSource() + " " + entry.getAuthor() + " " + entry.getTitle() + " " + entry.getDescription() + " " + entry.getUrl() + " " + entry.getUrlToImage() + " " + entry.getPublisherAt() + " " + entry.getContent());
         }
+        //Store Qtp data into Qtp table in Database
+        connectToMongoDB.insertNewsIntoMongoDB(newsList, "CNN NEWS");
+
+
+        connectToMongoDB.readNewsListFromMongoDB(newsList, "CNN NEWS");
+        //connectToSqlDB.insertDataFromArrayListToMySql(seleniumStudents, "qtp","studentList");
+
+        }
     }
-}
+
+

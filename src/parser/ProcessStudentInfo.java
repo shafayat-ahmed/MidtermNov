@@ -1,7 +1,6 @@
 package parser;
 
 import databases.ConnectToMongoDB;
-import databases.ConnectToSqlDB;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -89,13 +88,13 @@ public class ProcessStudentInfo {
 		connectToMongoDB.insertIntoMongoDB(seleniumStudents, "selenium");
 
 		//Retrieve Qtp students from Database
-		List<Student> stList = connectToMongoDB.readStudentListFromMongoDB("qtp");
+		List<Student> stList = connectToMongoDB.readStudentListFromMongoDB(seleniumStudents, "qtp");
 		for (Student st : stList) {
 			System.out.println(st.getFirstName() + " " + st.getLastName() + " " + st.getScore() + " " + st.getId());
 		}
 
 		//Retrieve Selenium students from Database
-		List<Student> stList1 = connectToMongoDB.readStudentListFromMongoDB("selenium");
+		List<Student> stList1 = connectToMongoDB.readStudentListFromMongoDB(seleniumStudents, "selenium");
 		for (Student st : stList1) {
 			System.out.println(st.getFirstName() + " " + st.getLastName() + " " + st.getScore() + " " + st.getId());
 		}
